@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}
+   {{ad.title}}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+   <div class="ad-title" style="background-image: url({{ ad.coverImage }})">
+      <div class="container">
+           <h1>{{ ad.title }}</h1>
+           <p>{{ ad.introduction }}</p>
+           <p class="h2">
+     <strong>{{ad.rooms}} chambres</strong> pour <strong>{{ad.price}}&euros;
+     </strong>par jour
+           
+           </p>
+    
+<a href="#"class="btn btn-primary">Réserver</a>
+      </div>
+</div>
+
+<div class="container">
+    <div class="row">
+       <div class="col-md-8 mb-3">
+          
+       </div>
+      <div class="col-4">
+
+      <img src="http://placehold.it 64x64" alt="Avatar de Najla">
+          <div class="col"> 
+          <h3>Najla BenChelly</h3>  
+          <span class="badge badge-primary"> 2 annonces 
+          </span>
+          </div>
+      </div>
+   </div>
+
+   <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur accusamus quia ratione minima facere, id pariatur sed at nostrum fugiat tenetur, 
+   
+   sapiente animi mollitia quis harum obcaecati necessitatibus sint consequatur.</p>
+
+
+   <p> Tenetur maxime laborum iste atque ea eveniet ab molestias repellendus est inventore,
+    nemo magni minima similique, id necessitatibus vel ullam corrupti hic! Neque hic nam corporis iusto harum dolores animi?</p>
+
+   <p> Nostrum eos, quaerat voluptatibus totam quas voluptas alias reiciendis 
+   unde rem voluptate possimus, maxime deleniti. Molestiae est ipsam iusto doloribus et, delectus hic! Tenetur ab veniam quisquam quasi rem corrupti? 
+   </p>
+
+</div>
+
+{% endblock %}

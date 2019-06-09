@@ -78,7 +78,7 @@ class Ad
 
         if(empty($this->slug)) {
             $slugify = new Slugify();
-            $this->slug ='...';
+            $this->slug = $slugify->slugify($this->title);
         }
     }
 
