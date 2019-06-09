@@ -23,13 +23,12 @@ class AdController extends AbstractController
 /**
  * permet d'afficher unee seeule annonce 
  * @Route("/ads/{slug}", name="ads_show")
- * @param Ad $ad
  * @return Response
  */
 
-public function show(Ad $ad){
+public function show($slug,AdRepository $repo){
     //Je recupere l'annonce qui correspond au slug 
-    //$ad = $repo-> findOneBySlug($slug);
+    $ad = $repo-> findOneBySlug($slug);
 
     return $this->render('ad/show.html.twig',[
         'ad'=> $ad
