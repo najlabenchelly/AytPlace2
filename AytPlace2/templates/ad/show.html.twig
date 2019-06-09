@@ -11,8 +11,8 @@
            <h1>{{ ad.title }}</h1>
            <p>{{ ad.introduction }}</p>
            <p class="h2">
-     <strong>{{ad.rooms}} chambres</strong> pour <strong>{{ad.price}}&euros;
-     </strong>par jour
+     <strong>{{ad.rooms}} chambres</strong> pour <strong> {{ ad.price }} euros 
+     </strong> par jour
            
            </p>
     
@@ -23,7 +23,7 @@
 <div class="container">
     <div class="row">
        <div class="col-md-8 mb-3">
-          
+          {{ad.content}}
        </div>
       <div class="col-4">
 
