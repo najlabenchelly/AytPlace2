@@ -14,11 +14,13 @@
             <div class="card bg-light mb-3">
                 <div class="card-header text-center">
                      {{ ad.rooms }} chambres, <strong> {{ad.price}} &euro; /jour</strong> <br>
-                     <small> Pas encore noté</small>
+                     <small> Pas encore noté</small>   
                 </div>
+                <a href="{{ path('ads_show',{'slug': ad.slug}) }}">
 
 
                 <img src="{{ ad.coverImage }}" alt="Image de l'apparteement" style="height: 200px; width:100%; display: block">
+                
 
                 <div class="card-body">
                    <h4 class="card-title">{{ad.title}}</h4>
