@@ -25,6 +25,7 @@
       <p> Ajouter vos images </p>
 
    {{ form_widget(form) }}
+   <input type="hidden" id="widget-counter" value="0">
 
    <div class="form-group">
      <button type="button" id="add-image" class= "btn btn-primary">Ajouter une image</button>
@@ -65,12 +66,13 @@
   <script> 
   $('#add-image').click(function(){
        //je reecup le num des futurs champs quee je vqis créer
-       const index = $('#annonce_images div.form-group').length;
+       const index = +$('widget-counter').val();
 
        // reecup model form prototypee
        const templt = $('#annonce_images').data('prototype').replace(/__name__/g, index);
 // injection du code dans la div 
        $('#annonce_images').append(templt);
+       $("widget-counter").val(index +1);
        //supression 
        handleDeleteButtons();
 
