@@ -39,12 +39,24 @@ public function create(Request $request ,ObjectManager $manager){
     $ad = new Ad();
     $form= $this->createForm(AnnonceType::class, $ad);
     $form->handleRequest($request);
-
+    
     if($form->isSubmitted() && $form->isValid()){
         
         $manager->persist($ad);
         $manager->flush();
 
+
+        $this->addFlash(
+            'success',
+            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée!"
+
+        );
+    
+     //redirection après soummission   
+    return $this->redirectToRoute ('ads_show',[
+        'slug' => $ad ->getSlug()
+
+    ]);
 
     }
                  

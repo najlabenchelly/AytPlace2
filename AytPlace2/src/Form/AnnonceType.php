@@ -32,9 +32,9 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        
-            ->add('title',TextType::class, $this->getConfiguration('Titre','tapez un titre pour votre annnonce'))
-            ->add('slug',TextType::class, $this->getConfiguration('Adressee web','tapez un titre pour votre adresse web '))
+
+            ->add('title',TextType::class, $this->getConfiguration('Titre','Tapez un titre pour votre annnonce'))
+            ->add('slug',TextType::class, $this->getConfiguration('Adressee web','Tapez un titre pour votre adresse web '))
             ->add('price',MoneyType::class, $this->getConfiguration('Prix par jour','Indiquez le prix souhaiter par jour'))
             ->add('introduction',TextType::class, $this-> getConfiguration("Description ","Donnez une description globale de l'annonce "))
             ->add('content',TextType::class, $this-> getConfiguration("Description détaillé ","Donnez une description détaillé de l'annonce "))
