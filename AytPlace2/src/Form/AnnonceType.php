@@ -20,33 +20,47 @@ class AnnonceType extends AbstractType
      * permet d'avoir la config de base d'un champs 
      * @param string $label
      * @param string $placeholder
+     * @param bool $required
      * @return array
      */
 
-    private function getConfiguration($label,$placeholder){
-        return ['label'=> $label,
-                'attr' =>[
+    private function getConfiguration($label, $placeholder, $required= TRUE){
+        return [
+            'label'=> $label,
+                'attr' => [
                     'placeholder'=> $placeholder
-                ]
-
-            ];
+                ],
+             'required' =>$required ];
 
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
 
-            ->add('title',TextType::class, $this->getConfiguration("Titre","Tapez un titre pour votre annnonce"))
-            ->add('slug',TextType::class, $this->getConfiguration("Adressee web","Tapez un titre pour votre adresse web "))
-            ->add('introduction',TextType::class, $this-> getConfiguration("Description ","Donnez une description globale de l'annonce "))
-            ->add('content',TextareaType::class, $this-> getConfiguration("Description détaillée ","Donnez une description détaillé de l'annonce "))
-            ->add('coverImage',UrlType::class, $this->getConfiguration("URL dee l'image principale", "Donnez l'adresse de la photo que vous souhaitez en premier plan"))
-            ->add('rooms',IntegerType::class, $this->getConfiguration("Nombre de pièces proposé ", "Nombre de pièces disponible "))
-            ->add('price',MoneyType::class, $this->getConfiguration("Prix par jour","Indiquez le prix souhaiter par jour"))
+            ->add(
+                'title',TextType::class,
+                 $this-> getConfiguration("Titre","Tapez un titre pour votre annnonce")
+                 )
+            ->add('slug',TextType::class,
+                 $this-> getConfiguration("Adressee web","Tapez un titre pour votre adresse web ", 
+FALSE))
+            
+            ->add('introduction',TextType::class,
+             $this-> getConfiguration("Description ","Donnez une description globale de l'annonce "))
+            ->add('content',TextareaType::class,
+             $this-> getConfiguration("Description détaillée ","Donnez une description détaillé de l'annonce "))
+            ->add('coverImage',UrlType::class, 
+            $this-> getConfiguration("URL dee l'image principale", "Donnez l'adresse de la photo que vous souhaitez en premier plan"))
+            ->add('rooms',IntegerType::class, 
+            $this-> getConfiguration("Nombre de pièces proposé ", "Nombre de pièces disponible "))
+            ->add('price',MoneyType::class,
+             $this-> getConfiguration("Prix par jour","Indiquez le prix souhaite par jour"))
             ->add('images',CollectionType::class, [
 
                 'entry_type' => ImageType::class,
-                'allow_add' => true
+                'allow_add' => true,
+                'allow_delete'=>true,
+                'by_reference' => false ,
 
             ]
          );

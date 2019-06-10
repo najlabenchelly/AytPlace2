@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
+{% block title %}Edition d'une annonce 
 
-{% block title %} Annonce {% endblock %}
+{% endblock %}
+
 {% form_theme form _self %}
 
 {% block body %}
 
-     <div class="container">
-     <h1> Créer une nouvelle annonce</h1>
+<div class="container">
+     <h1> Modifier l'annonce : {{ad.title}}</h1>
 
      {{ form_start(form) }}
 
      
      {{ form_widget(form) }}
-     <button type="submit" class= "btn btn-primary">Créer la nouvelle annonce </button>
+     <button type="submit" class= "btn btn-primary">Enregistrer les modificatsion </button>
 
      {{ form_end(form) }}
      </div>
+
 
 {% endblock %}
 
@@ -25,7 +28,7 @@
       <p> Ajouter vos images </p>
 
    {{ form_widget(form) }}
-   <input type="hidden" id="widgets-counter" value="0">
+   <input type="hidden" id="widget-counter" value="0">
 
    <div class="form-group">
      <button type="button" id="add-image" class= "btn btn-primary">Ajouter une image</button>
@@ -46,9 +49,12 @@
                 <div class="row">
                     <div class="col">
                     {{ form_widget(form.url) }}
+                    {{ form_errors(form.url) }}
+
                     </div>
                     <div class="col">
                     {{ form_widget(form.caption) }}
+                    {{ form_errors(form.caption) }}
                     </div>
               </div>
           </div>
@@ -67,14 +73,13 @@
   <script> 
      $('#add-image').click(function(){
        //je reecup le num des futurs champs quee je vqis créer
-       const index = +$('widgets-counter').val();
-       console.log(index);
+       const index = +$('widget-counter').val();
 
        // reecup model form prototypee
        const templt = $('#annonce_images').data('prototype').replace(/__name__/g, index);
 // injection du code dans la div 
        $('#annonce_images').append(templt);
-       $("widgets-counter").val(index +1);
+       $("widget-counter").val(index +1);
        //supression 
        handleDeleteButtons();
 
@@ -91,7 +96,16 @@
         });
     
     }
-handleDeleteButtons();
+    function updateCounter(){
+
+        const count = +$('#ad_images div.form-group').length;
+        $('#widget-counter').val(count);
+    }
+    updateCounter();
+    handleDeleteButtons();
+
+
+
   </script>
 
 {% endblock %}
