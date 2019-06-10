@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Image;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,16 +36,47 @@ public function index(AdRepository $repo)
 
 public function create(Request $request ,ObjectManager $manager){
     $request->request->get('title');
+//sous formulaire
 
     $ad = new Ad();
+    /* test
+    $image= new Image();
+
+    $image->setUrl('http://placehold.it/400x200')
+           ->setCaption('Titre 1');
+    
+
+    $image2= new Image();
+
+    $image2->setUrl('http://placehold.it/400x200')
+           ->setCaption('Titre 2');
+
+
+    $ad->addImage($image)
+       ->addImage($image2);
+       */
+    
+
     $form= $this->createForm(AnnonceType::class, $ad);
     $form->handleRequest($request);
-
+    
     if($form->isSubmitted() && $form->isValid()){
         
         $manager->persist($ad);
         $manager->flush();
 
+
+        $this->addFlash(
+            'success',
+            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée!"
+
+        );
+    
+     //redirection après soummission   
+    return $this->redirectToRoute ('ads_show',[
+        'slug' => $ad ->getSlug()
+
+    ]);
 
     }
                  
