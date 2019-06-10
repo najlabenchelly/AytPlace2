@@ -26,7 +26,7 @@ public function index(AdRepository $repo)
     }
 
  /**
-  * peermeet de creeer une annoncee 
+  * peermeet de creeer une annoncee sous form
   * 
   * @Route("/ads/newAd", name="ads_create")
   *
@@ -34,34 +34,18 @@ public function index(AdRepository $repo)
   */
 
 
-public function create(Request $request ,ObjectManager $manager){
-    $request->request->get('title');
-//sous formulaire
-
+public function create(Request $request, ObjectManager $manager){
+    
     $ad = new Ad();
-    /* test
-    $image= new Image();
-
-    $image->setUrl('http://placehold.it/400x200')
-           ->setCaption('Titre 1');
-    
-
-    $image2= new Image();
-
-    $image2->setUrl('http://placehold.it/400x200')
-           ->setCaption('Titre 2');
-
-
-    $ad->addImage($image)
-       ->addImage($image2);
-       */
-    
-
     $form= $this->createForm(AnnonceType::class, $ad);
     $form->handleRequest($request);
     
     if($form->isSubmitted() && $form->isValid()){
-        
+        foreach($ad->getImages() as $image){
+            $image->setAd($ad);
+            $manager->persist($image);
+
+        }
         $manager->persist($ad);
         $manager->flush();
 
@@ -74,7 +58,7 @@ public function create(Request $request ,ObjectManager $manager){
     
      //redirection après soummission   
     return $this->redirectToRoute ('ads_show',[
-        'slug' => $ad ->getSlug()
+        'slug' => $ad->getSlug()
 
     ]);
 
@@ -85,8 +69,54 @@ public function create(Request $request ,ObjectManager $manager){
         ]);
 
     }
+
 /**
- * permet d'afficher unee seeule annonce 
+ * Permet d'afficher le formulaire d'edition
+ * 
+ * @Route("/ads/{slug}/edit", name="ads_edit")
+ * 
+ * @return Response 
+ */
+
+
+ public function edit(Ad $ad, Request $request, ObjectManager $manager ){
+    $form= $this->createForm(AnnonceType::class, $ad);
+    $form->handleRequest($request);
+    
+  if($form->isSubmitted() && $form->isValid()){
+        foreach($ad->getImages() as $image){
+            $image->setAd($ad);
+            $manager->persist($image);
+
+        }
+        $manager->persist($ad);
+        $manager->flush();
+
+
+        $this->addFlash(
+            'success',
+            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été modifié!"
+
+        );
+    
+     //redirection après soummission   
+    return $this->redirectToRoute ('ads_show',[
+        'slug' => $ad ->getSlug()
+
+    ]);
+    
+  }
+  return $this ->render('ad/edit.html.twig',[
+    'form' => $form-> createView(),
+    'ad'=>$ad
+
+]);
+}
+ 
+
+
+/**
+ * permet d'afficher unee seule annonce 
  * @Route("/ads/{slug}", name="ads_show")
  * @return Response
  */
