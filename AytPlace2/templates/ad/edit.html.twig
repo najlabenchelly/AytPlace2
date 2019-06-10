@@ -3,7 +3,7 @@
 
 {% endblock %}
 
-{% form_theme form _self %}
+{% form_theme form "ad/form_new_edit.html.twig" %}
 
 {% block body %}
 
@@ -23,90 +23,9 @@
 {% endblock %}
 
 
-{% block _annonce_images_widget %}
-
-      <p> Ajouter vos images </p>
-
-   {{ form_widget(form) }}
-   <input type="hidden" id="widget-counter" value="0">
-
-   <div class="form-group">
-     <button type="button" id="add-image" class= "btn btn-primary">Ajouter une image</button>
-   </div>
-{% endblock %}
-
-
-{% block _annonce_images_entry_row %}
-    {{ form_widget(form)}}
-{% endblock %}
-
-
-{% block _annonce_images_entry_widget %}
-
-     <div class="form-group" id="block_{{id}}" >
-          <div class="row">
-              <div class="col-10">
-                <div class="row">
-                    <div class="col">
-                    {{ form_widget(form.url) }}
-                    {{ form_errors(form.url) }}
-
-                    </div>
-                    <div class="col">
-                    {{ form_widget(form.caption) }}
-                    {{ form_errors(form.caption) }}
-                    </div>
-              </div>
-          </div>
-
-              <div class="col-2"> 
-              <button type="button" data-action="delete" data-target="#block_{{id}}" class="btn btn-danger">X</button>
-              </div>
-          </div>
-     </div>
-    
-
-{% endblock %}
-
 
 {% block javascripts %}
-  <script> 
-     $('#add-image').click(function(){
-       //je reecup le num des futurs champs quee je vqis créer
-       const index = +$('widget-counter').val();
-
-       // reecup model form prototypee
-       const templt = $('#annonce_images').data('prototype').replace(/__name__/g, index);
-// injection du code dans la div 
-       $('#annonce_images').append(templt);
-       $("widget-counter").val(index +1);
-       //supression 
-       handleDeleteButtons();
-
-  });
-
-  // suppression champs image 
-    function handleDeleteButtons() {
-
-        $('button[data-action="delete"]').click(function(){
-
-            const targ = this.dataset.target;
-            $(targ).remove();
-
-        });
-    
-    }
-    function updateCounter(){
-
-        const count = +$('#ad_images div.form-group').length;
-        $('#widget-counter').val(count);
-    }
-    updateCounter();
-    handleDeleteButtons();
-
-
-
-  </script>
+  <script src="/js/ad.js"></script>
 
 {% endblock %}
 
