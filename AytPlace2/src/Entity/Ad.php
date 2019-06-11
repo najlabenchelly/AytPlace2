@@ -53,7 +53,7 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10,minMessage="Votre description doit faire plus de 20 caractères")
+     * @Assert\Length(min=1,minMessage="Votre description doit faire plus de 20 caractères")
      */
     private $content;
 

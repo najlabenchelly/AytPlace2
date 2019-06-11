@@ -31,7 +31,12 @@ class User
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $picture;
 
@@ -107,6 +112,17 @@ class User
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

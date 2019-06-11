@@ -34,6 +34,7 @@ class AppFixtures extends Fixture
            $user ->setFirstname($faker->firstname)
                  ->setLastname($faker->lastname)
                  ->setIntroduction($faker->sentence())
+                 ->setEmail($faker->email)
                  ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(1)) . '</p>')
                  ->setHash('password')
                  ->setPicture($picture);
@@ -56,7 +57,7 @@ class AppFixtures extends Fixture
      
         $coverImage= $faker->imageUrl(1000,350);
         $introduction=$faker ->paragraph(2);
-        $content='<p>' . join ('</p><p>', $faker->paragraphs(5)) . '</p>';
+        $content='<p>' . join ('</p><p>', $faker->paragraphs(2)) . '</p>';
 
         $user = $users[mt_rand(0, count($users) -1)];
 
