@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
            $pictureId =$faker->numberBetween(1,99) . '.jpg';
            
            $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId ;
-           $hash = $this->encoder->encodePassword($user, 'password');
+           $hash = $this->encoder->encodePassword($user, 'root');
 
            $user ->setFirstname($faker->firstname)
                  ->setLastname($faker->lastname)
