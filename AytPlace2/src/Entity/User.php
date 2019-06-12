@@ -6,12 +6,13 @@ use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @Orm\HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -31,7 +32,12 @@ class User
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $picture;
 
@@ -107,6 +113,17 @@ class User
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
@@ -201,4 +218,20 @@ class User
 
         return $this;
     }
+    public function getRoles(){
+        return ['ROLE_USER'];
+    }
+    public function getPassword(){
+        return $this->hash;
+    
+    }
+    public function getSalt(){}
+
+    public function getUsername(){
+        return $this->email;
+    
+    } 
+    public function eraseCredentials(){
+        
+    }   
 }

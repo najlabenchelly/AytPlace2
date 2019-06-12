@@ -9,9 +9,16 @@ use App\Entity\Image;
 use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
+
 {
+    private $encoder;
+    public function __construct(UserPasswordEncoderInterface $encoder){
+        $this->encoder =$encoder;
+    }
+    
     public function load(ObjectManager $manager)
     {
 
@@ -30,12 +37,14 @@ class AppFixtures extends Fixture
            $pictureId =$faker->numberBetween(1,99) . '.jpg';
            
            $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId ;
+           $hash = $this->encoder->encodePassword($user, 'root');
 
            $user ->setFirstname($faker->firstname)
                  ->setLastname($faker->lastname)
                  ->setIntroduction($faker->sentence())
+                 ->setEmail($faker->email)
                  ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(1)) . '</p>')
-                 ->setHash('password')
+                 ->setHash($hash)
                  ->setPicture($picture);
 
             
@@ -56,7 +65,7 @@ class AppFixtures extends Fixture
      
         $coverImage= $faker->imageUrl(1000,350);
         $introduction=$faker ->paragraph(2);
-        $content='<p>' . join ('</p><p>', $faker->paragraphs(5)) . '</p>';
+        $content='<p>' . join ('</p><p>', $faker->paragraphs(2)) . '</p>';
 
         $user = $users[mt_rand(0, count($users) -1)];
 
