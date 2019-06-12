@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\User;
+use App\Form\RegistrationType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+class RegistrationType extends AbstractType
+{
+    /**
+     * permet d'avoir la config de base d'un champs 
+     * @param string $label
+     * @param string $placeholder
+     * @param bool $required
+     * @return array
+     */
+
+    private function getConfiguration($label, $placeholder, $required= TRUE){
+        return [
+            'label'=> $label,
+                'attr' => [
+                    'placeholder'=> $placeholder
+                ],
+             'required' =>$required ];
+
+    }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('firstName', TextType::class, $this->getConfiguration("Prénom", "Votre prénom "))
+            ->add('lastName', TextType::class, $this->getConfiguration("Nom", "Votre nom de famille "))
+            ->add('email', EmailType::class, $this->getConfiguration("Email", "Votre adresse email"))
+            ->add('picture', UrlType::class, $this->getConfiguration("Photo de profil", "URL de votre avatar "))
+            ->add('hash', PasswordType::class, $this->getConfiguration("Mot de passe", "Choisissez un bon mot de passe !"))
+            ->add('introduction', TextType::class, $this->getConfiguration("Introduction", "Présentez vous en quelques mots "))
+            ->add('description', TextareaType::class, $this->getConfiguration("Description détaillée", "Presentez vous "))
+       
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
+    }
+}
