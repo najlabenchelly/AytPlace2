@@ -6,11 +6,18 @@ use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @Orm\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ * fields={"email"},
+ * message="Cee eemail est déjà existant , merci de bien vouloir le modifier" 
+ * )
  */
 class User implements UserInterface
 {
@@ -23,21 +30,25 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner votre prénom" )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner votre nom de famille" )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="Veuillez renseigner un email valide ")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url(message="Veuillez donner une URL valide pour votre avatar !")
      */
     private $picture;
 
@@ -48,16 +59,18 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=100, minMessage="Votre description doit faire au moins 100 caractères")
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable = true)
      */
     private $slug;
 

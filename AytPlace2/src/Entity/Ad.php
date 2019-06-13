@@ -8,8 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
-
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
@@ -36,7 +35,7 @@ class Ad
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable =true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
 
@@ -76,7 +75,7 @@ class Ad
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ads")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $author;
 
