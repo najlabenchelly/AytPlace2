@@ -22,7 +22,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
 
-        $faker = Factory::create('FR-fr');
+        $faker = Factory::create('fr-FR');
        //$slugify= new Slugify();
         //geestion utilisateur 
         
@@ -64,7 +64,7 @@ class AppFixtures extends Fixture
         $title=$faker->sentence(1);
      
         $coverImage= $faker->imageUrl(1000,350);
-        $introduction=$faker ->paragraph(2);
+        $introduction=$faker ->paragraph(1);
         $content='<p>' . join ('</p><p>', $faker->paragraphs(2)) . '</p>';
 
         $user = $users[mt_rand(0, count($users) -1)];

@@ -11,7 +11,8 @@ div.ad.title {
 div.ad-title h1,
 div.ad-title p {
     color: white;
-    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0, 5)
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0, 5);
+    padding-top: 10px;
 }
 
 div.carousel-caption {
@@ -57,8 +58,10 @@ img {
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin-left: 100px;
+
 }
+
+
 
 button {
     font: white;
@@ -73,10 +76,11 @@ button {
 
 
 .place-item__title {
-    font-size: 48px;
+    font-size: 33px;
     text-align: center;
     margin-bottom: 80px;
-    width: 70%;
+    width: 43%;
+    margin-top: 90px;
 }
 
 .place-item__text {
@@ -107,6 +111,7 @@ h1 {
 }
 
 .my-5 {
+    border: 59px solid rgba(1, 1, 1, 0.1);
     margin-bottom: 6rem !important;
     margin-left: 18%;
     margin-right: 10%;
@@ -124,4 +129,21 @@ h1 {
 div.ad-title h1,
 div.ad-title p {
     color: black
+}
+
+.bg-light {
+    border: 25px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    font-size: 0.765625rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+div.ad-title h1,
+div.ad-title p {
+    color: black;
+    /* margin-top: 0px; */
+    padding-top: 10px;
 }
