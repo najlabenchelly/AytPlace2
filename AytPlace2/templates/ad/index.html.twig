@@ -6,7 +6,17 @@
 <div class="container">
 
 <h1 class="my-5">Voici les annonces de nos hôtes</h1>
-
+  <div class="filter__container">
+                <h4>Capacité</h4>
+                <hr class="filter-line">
+                <ul class="filter-list__container capacity">
+                    <form action="#" method="post" id="filter-capacity">
+                        <li class="filter__item">50 et moins <label class="container"><input type="checkbox" value="50"> <span class="checkmark"></span></label></li>
+                        <li class="filter__item">50 à 100 <label  class="container"><input type="checkbox" value="100"> <span class="checkmark"></span></label></li>
+                        <li class="filter__item">100 et plus <label  class="container"><input type="checkbox" value="101"> <span class="checkmark"></span></label></li>
+                    </form>
+                </ul>
+            </div>
     <div class="row">
     {% for ad in ads %}
 
