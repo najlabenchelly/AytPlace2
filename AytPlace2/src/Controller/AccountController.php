@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Ad;
 use App\Entity\User;
+use App\Form\AccountType;
 use App\Form\RegistrationType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -10,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\Ad;
 
 
 class AccountController extends AbstractController
@@ -92,7 +93,26 @@ class AccountController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    /**
+     * Permet d'afficher et de traiter le formulaire de modification de profil
+     *
+     * @Route("/account/profile", name="account_profile")
 
+     * @return Response
+     */
 
-
+    public function profile(Request $request, ObjectManager $manager) {
+        //recuperee l'utilisateur dejà connecté
+        $user =$this->getUser();
+        $form =$this->createForm(AccountType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user);
+            $manager->flush();
+        
+        return $this->render('account/profile.html.twig',[
+            'form' => $form->createView()
+             ]);
+        }
+    }
 }
