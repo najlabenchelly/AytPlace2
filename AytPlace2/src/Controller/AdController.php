@@ -9,6 +9,8 @@ use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
@@ -29,6 +31,7 @@ public function index(AdRepository $repo)
   * peermeet de creeer une annoncee sous form
   * 
   * @Route("/ads/newAd", name="ads_create")
+  * @IsGranted("ROLE_USER")
   *
   * @return Response
   */
@@ -78,7 +81,8 @@ public function create(Request $request, ObjectManager $manager){
  * Permet d'afficher le formulaire d'edition
  * 
  * @Route("/ads/{slug}/edit", name="ads_edit")
- * 
+ * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message=" Cette annonce ne vous appartient pas ,
+ * vous ne pouvez pas la modifier")
  * @return Response 
  */
 
