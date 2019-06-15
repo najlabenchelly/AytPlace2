@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Ad;
 use Faker\Factory;
+use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
 use Cocur\Slugify\Slugify;
@@ -22,10 +23,27 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
 
-        $faker = Factory::create('fr-FR');
+        $faker = Factory::create('fr_FR');
+        $adminRole = new Role();
+        $adminRole -> setTitle('ROLE_ADMIN');
+        $manager->persist($adminRole);
+
        //$slugify= new Slugify();
+         
+        $adminUser= new User();
+        $adminUser->setFirstname('Najla')
+                  ->setLastname('Chelly')
+                  ->setEmail('Chellly.n@gmail.com')
+                  ->setHash($this->encoder->encodePassword($adminUser, 'root'))
+                  ->setPicture('https://avatar.io/instagram/_newnew_n')
+                  ->setIntroduction($faker->sentence())
+                  ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(3)) . '</p>')
+                  ->addUserRole($adminRole);
+            $manager->persist($adminUser);
+                 
+                   
+
         //geestion utilisateur 
-        
         $users =[];
         $genres=['male','female'];
 
@@ -43,7 +61,7 @@ class AppFixtures extends Fixture
                  ->setLastname($faker->lastname)
                  ->setIntroduction($faker->sentence())
                  ->setEmail($faker->email)
-                 ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(1)) . '</p>')
+                 ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(3)) . '</p>')
                  ->setHash($hash)
                  ->setPicture($picture);
 

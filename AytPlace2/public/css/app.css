@@ -204,3 +204,12 @@ h2 {
     max-width: 24px;
     max-height: 24px;
 }
+
+p {
+    margin-top: 50px;
+}
+
+.carousel-inner {
+    margin-top: 50px;
+
+}

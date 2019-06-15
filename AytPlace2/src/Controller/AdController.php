@@ -8,7 +8,10 @@ use App\Form\AnnonceType;
 use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
@@ -29,6 +32,7 @@ public function index(AdRepository $repo)
   * peermeet de creeer une annoncee sous form
   * 
   * @Route("/ads/newAd", name="ads_create")
+  * @IsGranted("ROLE_USER")
   *
   * @return Response
   */
@@ -78,7 +82,8 @@ public function create(Request $request, ObjectManager $manager){
  * Permet d'afficher le formulaire d'edition
  * 
  * @Route("/ads/{slug}/edit", name="ads_edit")
- * 
+ * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message=" Cette annonce ne vous appartient pas ,
+ * vous ne pouvez pas la modifier")
  * @return Response 
  */
 
@@ -135,5 +140,24 @@ public function show($slug,AdRepository $repo){
     ]);
 
   }
-  
+  /**
+   * Suppression dee l'annonce
+   * @Route("/ads/{slug}/delete", name="ads_delete")
+   * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message= "Vous n'avez pas accès à cette page ")
+   * @param Ad $ad
+   * @param ObjectManager $manager
+   * @return void Response
+   */
+  public function delete(Ad $ad, ObjectManager $manager){
+      $manager->remove($ad);
+      $manager->flush();
+
+      $this->addFlash(
+          'sucess',
+          "L'annonce <strong>{$ad->getTitle()}</strong> a bien été supprimée "
+      );
+    return $this->redirectToRoute("ads_index");
+      
+
+  }
 }
