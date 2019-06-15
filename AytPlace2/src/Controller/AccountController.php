@@ -96,7 +96,7 @@ class AccountController extends AbstractController
         ]);
     }
     /**
-     * Permet d'afficher et de traiter le formulaire de modification de profil
+     *Affiche et traitement du formulaire de modification de profil
      *
      * @Route("/account/profile", name="account_profile")
      * @return Response
@@ -122,7 +122,7 @@ class AccountController extends AbstractController
         }
     
     /**
-     * Permet de modifier le mot de passe
+     * Modification du mot de passe
      *
      * @Route("/account/password-update", name="account_password")
      * 
@@ -133,38 +133,36 @@ class AccountController extends AbstractController
     public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager) {
 
         $passwordUpdate = new PasswordUpdate();
-
         $user = $this->getUser();
-
         $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
         $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()) {
-            // 1. Vérifier que le oldPassword du formulaire soit le même que le password de l'user
+            // verification old password - nouveau password 
             if(!password_verify($passwordUpdate->getOldPassword(), $user->getHash())){
                 // Gérer l'erreur
                 $form->get('oldPassword')->addError(new FormError("Le mot de passe que vous avez tapé n'est pas votre mot de passe actuel !"));
             } else {
                 $newPassword = $passwordUpdate->getNewPassword();
-
-                 $hash = $encoder->encodePassword($user, $newPassword);
-
+                $hash = $encoder->encodePassword($user, $newPassword);
                 $user->setHash($hash);
-                  $manager->persist($user);
+                $manager->persist($user);
                 $manager->flush();
                 $this->addFlash(
                     'success',
                     "Votre mot de passe a bien été modifié !"
                 );
 
-                return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('homepage');
             }
         }
 
         
-            return $this->render('account/password.html.twig',[
-            'form' => $form->createView()
+    return $this->render('account/password.html.twig',[
+    'form' => $form->createView()
             ]);
-    }
+     }
+
+     
 
     }
