@@ -9,6 +9,7 @@ use App\Form\BookingType;
 use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,19 +33,31 @@ class BookingController extends AbstractController
 
             $booking->setBooker($user)
                     ->setAd($ad);
+    // si les datee ne sont pas dispo messagee err 
+    if(!$booking->isBookableDates()) {
+    $this->addFlash(
+        'warning',
+        "Les dates choisies sont indisponible"
+    );
+    
+}else{
+
 
             $manager->persist($booking);
             $manager->flush();
 
-            return $this->redirectToRoute('booking_show',['id'=> $booking->getId()]);
+            return $this->redirectToRoute('booking_show',['id'=> $booking->getId(),
+            'withAlert'=>true]);
 
         }
+    }
 
         return $this->render('booking/book.html.twig', [
             'ad' => $ad,
             'form'=> $form->createView()
         ]);
     }
+
     /**
      * affichage de la page réservation 
      *@Route("/booking/{id}",name="booking_show")
