@@ -4,27 +4,25 @@
 
 {% block body %}
 <div class="pink__container"></div>
-<div class="container">
-<div class="row">
- <div class="pink__container"></div>
-            <div class="col-md-3">&nbsp;</div>
-            <div class="col-md-6">
-            <div class="bg-light py-3 px-3">
+    <div class="container">
+        <div class="row">
+            <div class="pink__container"></div>
+                    <div class="col-md-3">&nbsp;</div>
+                        <div class="col-md-6">
+                            <div class="bg-light py-3 px-3">
             
-    <h1 class="my-5">Inscription </h1>
+                            <h1 class="my-5">Inscription </h1>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form) }}
 
-
-    
-    <button type="submit" class="btn btn-sucess">Confirmez l'inscription </button>
-    {{ form_end(form) }}
-</div>
-</div>
-</div>
-</div>
-</div>
+                        <button type="submit" class="btn btn-sucess">Confirmez l'inscription </button>
+                        {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+             </div>
+        </div>
 
 
 {% endblock %}
