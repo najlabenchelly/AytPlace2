@@ -170,8 +170,7 @@ class AccountController extends AbstractController
      * @Route("/account/", name="account_index")
      * @IsGranted("ROLE_USER")
      * 
-     * @return
-     *  Response
+     * @return Response
      */
 
     public function myAccount() {
@@ -180,4 +179,15 @@ class AccountController extends AbstractController
         ]);
 
     } 
-}
+      /**
+     * 
+     * Listing des reservations de l'utilisateurs  
+     *@Route("/account/bookings",name="account_bookings")
+     * @return Response
+     */
+    public function bookings(){
+        return $this->render('account/bookings.html.twig');
+    }
+
+ }
+
