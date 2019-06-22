@@ -56,6 +56,7 @@ class BookingController extends AbstractController
             'ad' => $ad,
             'form'=> $form->createView()
         ]);
+
     }
 
     /**

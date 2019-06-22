@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 
 /**
@@ -22,36 +23,38 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn
      */
     private $booker;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ad", inversedBy="bookings")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn
      */
     private $ad;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Date(message="Attention, la date d'arrivéee doit êtree au bon format!")
+     * @Assert\Date(message="Attention, la date d'arrivée doit êtree au bon format!")
+     * @Assert\GreaterThan("today",message="La date d'arrivée doit être ultérieur à la date d'aujourd'hui!")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Attention, la date d'arrivéee doit êtree au bon format!")
+     * @Assert\GreaterThan(propertyPath="startDate",message="La date de départ doit être supérieur à la date d'arrivé ")
      */
     private $endDate;
 
     /**
-     * @ORM\Column(type="datetime",nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="float",nullable=true)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(type="float")
+     * @ORM\JoinColumn
      */
     private $amount;
 
@@ -114,6 +117,7 @@ class Booking
      *
      * @return array Un tableau d'objets DateTime représentant les jours de la réservation
      */
+    
     public function getDays() {
         //
         $resultat = range(

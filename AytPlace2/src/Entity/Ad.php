@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
@@ -35,7 +36,8 @@ class Ad
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * 
      */
     private $slug;
 
@@ -75,7 +77,7 @@ class Ad
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ads")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn
      */
     private $author;
 
@@ -120,7 +122,7 @@ class Ad
             foreach($this->bookings as $booking) {
             // Calculer les jours qui se trouvent entre la date d'arrivée et de départ
         //range permet de generee le timeestamp*
-        //24H/journée 60min/1H 60 scd 1 journée
+        //24H/journée 60min/1H 60 scd journée
             $resultat = range(
                 $booking->getStartDate()->getTimestamp(), 
                 $booking->getEndDate()->getTimestamp(), 
