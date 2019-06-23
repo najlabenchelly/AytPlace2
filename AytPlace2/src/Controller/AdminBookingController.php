@@ -34,6 +34,7 @@ class AdminBookingController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $booking->setAmount(0);
 
             $manager->persist($booking);
@@ -52,4 +53,23 @@ class AdminBookingController extends AbstractController
             'booking' => $booking
         ]);
     }
+    /**
+     * Suppression d'une réservation
+     * 
+     * @Route("/admin/bookings/{id}/delete", name="admin_booking_delete")
+     *
+     * @return Response
+     */
+    public function delete(Booking $booking, ObjectManager $manager) {
+        $manager->remove($booking);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "La réservation est bien supprimée"
+        );
+
+        return $this->redirectToRoute("admin_booking_index");
+    }
 }
+
