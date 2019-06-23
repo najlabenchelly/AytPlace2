@@ -42,8 +42,8 @@ class AdminCommentController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-                 $manager->persist($comment);
-                $manager->flush();
+            $manager->persist($comment);
+            $manager->flush();
 
             $this->addFlash(
          'success',
@@ -55,4 +55,26 @@ class AdminCommentController extends AbstractController
             'form' => $form->createView()
         ]);
         }
+    /**
+     * Supprimee un commentaire
+     * 
+     * @Route("/admin/comments/{id}/delete", name="admin_comment_delete")
+     *
+     * @param Comment $comment
+     * @param ObjectManager $manager
+     * @return Response
+     */
+    public function delete(Comment $comment, ObjectManager $manager) {
+        $manager->remove($comment);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "Le commentaire a bien été supprimé !"
+        );
+
+        return $this->redirectToRoute('admin_comment_index');
     }
+}
+
+    
