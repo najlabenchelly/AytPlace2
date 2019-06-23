@@ -11,7 +11,7 @@
    <h1>{{ ad.title }}</h1>
      <p>{{ad.introduction}}</p>
 	 <p class ="h2">
-<strong>{{ ad.rooms }} salles</strong> pour <strong> {{ ad.price }}&euro; </strong> par jour
+       <strong>{{ ad.rooms }} salles</strong> pour <strong> {{ ad.price }}&euro; </strong> par jour
 	 </p>
 
 				<a href="{{path('booking_create',{'slug':ad.slug})}}" class="btn btn-primary"> Réserver </a>
@@ -31,7 +31,6 @@
                  <ol class="carousel-indicators">
 				 
 				 {% for image in ad.images %}
-
 	                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %}></li>
 			     {% endfor %}
                  </ol>
@@ -45,7 +44,6 @@
 			   </div>
 	       </div>
 	    {% endfor %}
-	
     </div>
 
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -56,13 +54,44 @@
 	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 	<span class="sr-only">Next</span>
   </a>
-</div>
-		</div>
+  </div>
+<hr>
+                {% if ad.comments|length > 0 %}
+				<h2 class="mb-3">Commentaires de nos voyageurs :</h2>
+                  <div class="alert alert-info">
+                    <h4 class="alert-heading text-center">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                Note globale
+                            </div>
+                            <div class="col">
+                            {% include 'shared/rating.html.twig' with {'rating': ad.avgRatings} %}
+                                <br>
+                                <br>
+                                <small>(Calculée sur {{ ad.comments|length }} avis)</small>
+                            </div>
+                        </div>
+                    </h4>
+                </div>
 
+				{% for comment in ad.comments %}
+                    <div class="bg-light rounded mb-3 py-3 px-3">
+                        <strong>{{ comment.author.firstName }}</strong> a dit :
+                        <blockquote>
+                            {{comment.content}}
+                        </blockquote>
+                        <strong>Note donnée par {{ comment.author.firstName }} </strong>
+						{% include 'shared/rating.html.twig' with {'rating': comment.rating} %}
+				   </div> 
+                {% endfor %}
+            {% else %}
+                <h2>Cette annonce n'a pas encore reçu de commentaires ...</h2>
+            {% endif %}
+		</div>
 		<div class="col">
 		  <div class="row">
 			 <div class="col-3">
-			 
+			
 			 <a href="{{ path('user_show',{'slug':ad.author.slug}) }}">
 			 <img src="{{ad.author.picture}}" class ="avatar avatar-medium "alt="Avatar de {{ad.author.firstName}} {{ad.author.lastName}}">
 			 </a>
