@@ -17,64 +17,52 @@ class AdminCommentController extends AbstractController
     /**
      * @Route("/admin/comments/", name="admin_comment_index")
      */
-    public function index(CommentRepository $repo)
+    public function index()
     {
-       $comments=$repo->findAll();
-
         return $this->render('admin/comment/index.html.twig', [
-            'comments' => $comments,
+            'comments' => $this->getDoctrine()->getRepository(Comment::class)->findAll(),
         ]);
     }
 
-
     /**
      * Modification d'un commentaire
-     *
      * @Route("/admin/comments/{id}/edit", name="admin_comment_edit")
-     * 
      * @return Response
      */
-    public function edit(Comment $comment, Request $request, ObjectManager $manager) {
-        // $repo=$this->getDoctrine()->getRepository(Comment::class);
-
+    public function edit(Comment $comment, Request $request) {
         $form = $this->createForm(AdminCommeentType::class, $comment);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($comment);
-            $manager->flush();
+            $em = $this->getDoctrine()->getManager();
 
-            $this->addFlash(
-         'success',
-         "Le commentaire {$comment->getId()} a bien été modifié"
-            );
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success',"Le commentaire {$comment->getId()} a bien été modifié");
         }
-    return $this->render('admin/comment/edit.html.twig', [
-            'comment' => $comment,
-            'form' => $form->createView()
+        return $this->render('admin/comment/edit.html.twig', [
+                'comment' => $comment,
+                'form' => $form->createView()
         ]);
-        }
+    }
+
     /**
      * Supprimee un commentaire
-     * 
      * @Route("/admin/comments/{id}/delete", name="admin_comment_delete")
-     *
      * @param Comment $comment
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(Comment $comment, ObjectManager $manager) {
-        $manager->remove($comment);
-        $manager->flush();
+    public function delete(Comment $comment) {
+        $em = $this->getDoctrine()->getManager();
 
-        $this->addFlash(
-            'success',
-            "Le commentaire a bien été supprimé !"
-        );
+        $em->remove($comment);
+        $em->flush();
+
+        $this->addFlash('success',"Le commentaire a bien été supprimé !");
 
         return $this->redirectToRoute('admin_comment_index');
     }
 }
 
-    

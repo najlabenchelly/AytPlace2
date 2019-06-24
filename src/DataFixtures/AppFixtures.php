@@ -21,7 +21,7 @@ class AppFixtures extends Fixture
     public function __construct(UserPasswordEncoderInterface $encoder){
         $this->encoder =$encoder;
     }
-    
+
     public function load(ObjectManager $manager)
     {
 
@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
         $manager->persist($adminRole);
 
        //$slugify= new Slugify();
-         
+
         $adminUser= new User();
         $adminUser->setFirstname('Najla')
                   ->setLastname('Chelly')
@@ -42,10 +42,21 @@ class AppFixtures extends Fixture
                   ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(3)) . '</p>')
                   ->addUserRole($adminRole);
             $manager->persist($adminUser);
-                 
-                   
 
-        //geestion utilisateur 
+        $adminUser= new User();
+        $adminUser->setFirstname('alexandre')
+            ->setLastname('vagnair')
+            ->setEmail('alexandre.vagnair@sooyoos.com')
+            ->setHash($this->encoder->encodePassword($adminUser, 'root'))
+            ->setPicture('https://avatar.io/instagram/_newnew_n')
+            ->setIntroduction($faker->sentence())
+            ->setDescription('<p>' . join ('</p><p>', $faker->paragraphs(3)) . '</p>')
+            ->addUserRole($adminRole);
+        $manager->persist($adminUser);
+
+
+
+        //geestion utilisateur
         $users =[];
         $genres=['male','female'];
 
@@ -55,7 +66,7 @@ class AppFixtures extends Fixture
            $genre = $faker->randomElement($genres);
            $picture = 'https://randomuser.me/api/portraits/';
            $pictureId =$faker->numberBetween(1,99) . '.jpg';
-           
+
            $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId ;
            $hash = $this->encoder->encodePassword($user, 'root');
 
@@ -67,14 +78,14 @@ class AppFixtures extends Fixture
                  ->setHash($hash)
                  ->setPicture($picture);
 
-            
+
         $manager->persist($user);
         $users[] =$user;
 
-        
-        
+
+
        }
-        
+
         //gestion annonce
 
 
@@ -82,7 +93,7 @@ class AppFixtures extends Fixture
         $ad = new Ad();
 
         $title=$faker->sentence(1);
-     
+
         $coverImage= $faker->imageUrl(1000,350);
         $introduction=$faker ->paragraph(3);
         $content='<p>' . join ('</p><p>', $faker->paragraphs(2)) . '</p>';
@@ -97,8 +108,8 @@ class AppFixtures extends Fixture
            ->setRooms(mt_rand(1, 5))
            ->setAuthor($user);
 
-           //creation image relieer à ad 
-   
+           //creation image relieer à ad
+
         for($j= 1; $j <= mt_rand(2, 5); $j++) {
             $image = new Image();
             $image->setUrl($faker->imageUrl())
@@ -135,7 +146,7 @@ class AppFixtures extends Fixture
                             ->setRating(mt_rand(1, 5))
                             ->setAuthor($booker)
                             ->setAd($ad);
-                            
+
                     $manager->persist($comment);
                 }
             }
@@ -147,4 +158,3 @@ class AppFixtures extends Fixture
     }
 }
 
-      

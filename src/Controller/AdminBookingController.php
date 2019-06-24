@@ -15,34 +15,31 @@ class AdminBookingController extends AbstractController
     /**
      * @Route("/admin/bookings", name="admin_booking_index")
      */
-    public function index(BookingRepository $repo)
+    public function index()
     {
         return $this->render('admin/booking/index.html.twig', [
-     'bookings' => $repo->findAll()
+            'bookings' => $this->getDoctrine()->getRepository(Booking::class)->findAll()
         ]);
     }
     /**
-     *Edition d' une réservation
-     * 
+     * Edition d' une réservation
      * @Route("/admin/bookings/{id}/edit", name="admin_booking_edit")
-     * 
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Booking $booking, Request $request, ObjectManager $manager) {        
+    public function edit(Booking $booking, Request $request) {
         $form = $this->createForm(AdminBookingType::class, $booking);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
-            $booking->setAmount(0);
-
-            $manager->persist($booking);
-            $manager->flush();
+            $em->persist($booking);
+            $em->flush();
 
             $this->addFlash(
-                'success', 
-                "La réservation n°{$booking->getId()} a bien été modifiée" 
+                'success',
+                "La réservation n°{$booking->getId()} a bien été modifiée"
             );
 
             return $this->redirectToRoute("admin_booking_index");
@@ -53,16 +50,17 @@ class AdminBookingController extends AbstractController
             'booking' => $booking
         ]);
     }
+
     /**
      * Suppression d'une réservation
-     * 
      * @Route("/admin/bookings/{id}/delete", name="admin_booking_delete")
-     *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function delete(Booking $booking, ObjectManager $manager) {
-        $manager->remove($booking);
-        $manager->flush();
+    public function delete(Booking $booking) {
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($booking);
+        $em->flush();
 
         $this->addFlash(
             'success',

@@ -16,27 +16,32 @@ class AdminAdController extends AbstractController
     /**
      * @Route("/admin/ads",name="admin_ads_index")
      */
-    public function index(AdRepository $repo)
+    public function index()
     {
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $repo->findAll()
+            'ads' => $this->getDoctrine()->getRepository(Ad::class)->findAll()
         ]);
     }
-     /**
+
+    /**
      * formulaire d'édition annonce
-     * 
+     *
      * @Route("/admin/ads/{id}/edit", name="admin_ads_edit")
      *
      * @param Ad $ad
-     * @return Response
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Ad $ad, Request $request,ObjectManager $manager) {
+    public function edit(Ad $ad, Request $request) {
         $form = $this->createForm( AnnonceType::class, $ad);
         $form-> handleRequest($request);
+
         if($form->isSubmitted()&& $form->isValid()){
-            $manager->persist($ad);
-            $manager->flush();
-           
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($ad);
+            $em->flush();
+
             $this->addFlash(
                 'success',
                 "l'enregistrement {$ad->getTitle()} s'est bien effectué "
@@ -46,7 +51,6 @@ class AdminAdController extends AbstractController
         return $this->render('admin/ad/edit.html.twig',[
             'ad'=>$ad,
             'form'=> $form->createView()
-
         ]);
     }
 }
