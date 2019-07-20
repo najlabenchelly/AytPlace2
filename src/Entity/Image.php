@@ -19,14 +19,14 @@ class Image
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=500)
      * @Assert\Url()
      */
     private $url;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, minMessage= "le titre de l'image doit faire au moins 10 caractères" )
+     * @Assert\Length(min=5, minMessage= "le titre de l'image doit faire au moins 10 caractères" )
      */
     private $caption;
 

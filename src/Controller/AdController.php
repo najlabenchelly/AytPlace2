@@ -29,7 +29,7 @@ public function index(AdRepository $repo)
     }
 
  /**
-  * peermeet de creeer une annoncee sous form
+  * peermeet de créer une annoncee sous form
   * 
   * @Route("/ads/newAd", name="ads_create")
   * @IsGranted("ROLE_USER")
@@ -104,7 +104,7 @@ public function create(Request $request, ObjectManager $manager){
 
         $this->addFlash(
             'success',
-            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été modifié!"
+            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été modifiée!"
 
         );
     

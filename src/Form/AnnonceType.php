@@ -54,7 +54,7 @@ FALSE))
             ->add('rooms',IntegerType::class, 
             $this-> getConfiguration("Nombre de pièces proposé ", "Nombre de pièces disponible "))
             ->add('price',MoneyType::class,
-             $this-> getConfiguration("Prix par jour","Indiquez le prix souhaite par jour"))
+             $this-> getConfiguration("Prix par jour","Indiquez le prix par jour"))
             ->add('images',CollectionType::class, [
 
                 'entry_type' => ImageType::class,

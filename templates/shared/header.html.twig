@@ -15,7 +15,7 @@
         <a class="nav-link" href="{{path('ads_index')}}">Annonces</a>
     </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="{{path('ads_index')}}">About</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">
@@ -30,7 +30,7 @@
       <a href="{{path('ads_create')}}" class="dropdown-item">Créer une annonce </a>
         <div class="dropdown-divider"></div>
       <a href="{{path('account_index')}}" class="dropdown-item">Mon compte</a>
-      <a href="{{path('account_bookings')}}" class="dropdown-item">Mes reservations</a>
+      <a href="{{path('account_bookings')}}" class="dropdown-item">Mes réservations</a>
       <a href="{{path('account_profile')}}" class="dropdown-item">Modifier mon profil </a>
       <div class="dropdown-divider"></div>
       <a href="{{path('account_logout')}}" class="dropdown-item">Deconnexion</a>
@@ -39,7 +39,7 @@
         </li>
     {% else %}
      <li class="nav-item">
-      <a href="{{ path('account_register') }}" class="nav-link">inscription </a>
+      <a href="{{ path('account_register') }}" class="nav-link">Inscription </a>
         </li>
       <li class="nav-item">
         <a href="{{ path('account_login') }}" class="nav-link">Connexion</a>
