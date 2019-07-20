@@ -1,219 +1,206 @@
-div.container {
-    margin-top: 20px;
+div.container,
+div.container-fluid {
+  margin-top: 20px;
 }
 
 div.ad.title {
-    padding: 2em;
-    background-size: cover;
-    background-position: center center;
+  padding: 2em;
+  background-size: cover;
+  background-position: center center;
 }
 
 div.ad-title h1,
 div.ad-title p {
-    color: white;
-    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0, 5);
-    padding-top: 10px;
+  color: white;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0, 5);
+  padding-top: 10px;
 }
 
 div.carousel-caption {
-    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 div.social-media__container {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
-
-
 .pink__container {
-    width: 100%;
-    height: 550px;
-    background-color: #EDDBD5;
-    top: 560px;
-    position: absolute;
-    z-index: -1;
-    margin-left: 0;
-    height: 450px;
-    /* padding: 0px; */
+  width: 100%;
+  height: 550px;
+  background-color: #eddbd5;
+  top: 560px;
+  position: absolute;
+  z-index: -1;
+  margin-left: 0;
+  height: 450px;
+  /* padding: 0px; */
 }
 
 img {
-    margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .place-item {
-    display: left;
-    flex-flow: row wrap;
-    align-items: center;
-    vertical-align: middle;
-    margin-bottom: 145px;
+  display: left;
+  flex-flow: row wrap;
+  align-items: center;
+  vertical-align: middle;
+  margin-bottom: 145px;
 }
 
 .place-item.second {
-    flex-flow: row-reverse wrap;
-    margin-top: 200px;
+  flex-flow: row-reverse wrap;
+  margin-top: 200px;
 }
 
 .place__content-container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
-
-
 button {
-    font: white;
+  font: white;
 }
 
 .logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 90px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
 }
 
-
 .place-item__title {
-    font-size: 33px;
-    text-align: center;
-    margin-bottom: 80px;
-    width: 43%;
-    margin-top: 90px;
+  font-size: 33px;
+  text-align: center;
+  margin-bottom: 80px;
+  width: 43%;
+  margin-top: 90px;
 }
 
 .place-item__text {
-    width: 70%;
-    font-size: 22px;
-    margin-top: 110px;
+  width: 70%;
+  font-size: 22px;
+  margin-top: 110px;
 }
 
 .logo.header {
-    font: white;
+  font: white;
 }
 
-
-
 .nav-link:hover {
-    color: #fff;
-    border-bottom: 1px solid #fff;
+  color: #fff;
+  border-bottom: 1px solid #fff;
 }
 
 nav {
-    background-color: #EDDBD5;
-
+  background-color: #eddbd5;
 }
 
 h1 {
-    margin-bottom: 100px;
-    margin-top: 50px !important;
+  margin-bottom: 100px;
+  margin-top: 50px !important;
 
-    padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-
-
 
 .my-5 {
-    border: 11px solid rgba(1, 1, 1, 0.1);
-    /* margin-bottom: 12rem !important; */
-    /* margin-left: 18%; */
-    /* margin-right: 10%; */
-    /* margin-top: 14px; */
-    /* margin-top: 9rem !important; */
-    text-align: center;
-    padding-bottom: 12px;
-    padding-top: 12px;
-
+  border: 11px solid rgba(1, 1, 1, 0.1);
+  /* margin-bottom: 12rem !important; */
+  /* margin-left: 18%; */
+  /* margin-right: 10%; */
+  /* margin-top: 14px; */
+  /* margin-top: 9rem !important; */
+  text-align: center;
+  padding-bottom: 12px;
+  padding-top: 12px;
 }
 
-
 h1 {
-    margin-top: 50px !important;
-    margin-bottom: 6rem !important;
-    text-align: center;
-
+  margin-top: 50px !important;
+  margin-bottom: 6rem !important;
+  text-align: center;
 }
 
 div.ad-title h1,
 div.ad-title p {
-    color: black;
-    text-shadow: 3px, 3px, 3px rgba(0, 0, 0, 0.5);
+  color: black;
+  text-shadow: 3px, 3px, 3px rgba(0, 0, 0, 0.5);
 }
 
 .bg-light {
-    border: 25px solid rgba(0, 0, 0, 0.1);
+  border: 25px solid rgba(0, 0, 0, 0.1);
 }
 
 .btn {
-    font-size: 0.765625rem;
-    margin-bottom: 5px;
-    text-transform: uppercase;
+  font-size: 0.765625rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 div.ad-title h1,
 div.ad-title p {
-    color: black;
-    /* margin-top: 0px; */
-    padding-top: 10px;
+  color: black;
+  /* margin-top: 0px; */
+  padding-top: 10px;
 }
 
-
 @media (min-width: 768px) {
-
-    .col-md-6 {
-
-        max-width: 50%;
-        margin-bottom: 12rem !important;
-        margin-top: 14px;
-        margin-top: 9rem !important;
-        padding-bottom: 12px;
-        padding-top: 12px;
-        border: 10px ridge grey;
-    }
+  .col-md-6 {
+    max-width: 50%;
+    margin-bottom: 12rem !important;
+    margin-top: 14px;
+    margin-top: 9rem !important;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    border: 10px ridge grey;
+  }
 }
 
 .my-5 {
-    border: 10px ridge lightgray;
-    text-align: center;
-    padding-bottom: 12px;
-    padding-top: 12px;
+  border: 10px ridge lightgray;
+  text-align: center;
+  padding-bottom: 12px;
+  padding-top: 12px;
 }
 
 h2 {
-    color: lightgrey;
+  color: lightgrey;
 }
 
 .avatar {
-    max-width: 128px;
-    max-height: 128px;
-    border-radius: 50%;
-
+  max-width: 128px;
+  max-height: 128px;
+  border-radius: 50%;
 }
 
 .avatar-medium {
-    max-width: 64px;
-    max-height: 64px;
-    border: solid 4px lightgray;
-
+  max-width: 64px;
+  max-height: 64px;
+  border: solid 4px lightgray;
 }
 
 .avatar-mini {
-    max-width: 24px;
-    max-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+
 }
 
+.avatar-dashboard {
+  max-width: 45px;
+  max-height: 45px;
+  margin-right: 5px;
+  border: solid 4px lightgray;
+
+}
 
 
 .carousel-inner {
-    margin-top: 50px;
-
+  margin-top: 50px;
 }
-
 
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
-    color: firebrick !important;
+  color: firebrick !important;
 }

@@ -14,7 +14,7 @@
                         <i class="fas fa-users fa-3x"></i>
                         </div>
                     <div class="col-8">
-                        <h4 class="card-title">100 utilisateurs</h4>
+                        <h4 class="card-title">{{stats.users}} utilisateurs </h4>
                     
                     </div>     
                  </div>
@@ -31,7 +31,7 @@
                         
                         </div>
                         <div class="col-8">
-                        <h4 class="card-title">50 annonces </h4>
+                        <h4 class="card-title">{{ stats.ads }} annonces </h4>
                         
                         </div>
                  </div>
@@ -47,7 +47,7 @@
                 <i class="fas fa-folder fa-3x"></i>
                 </div>
                     <div class="col-8">
-                    <h4 class="card-title">10 réservations </h4>
+                    <h4 class="card-title">{{ stats.bookings }} réservations </h4>
                 </div>
             </div>
         </div>
@@ -62,15 +62,45 @@
                         <i class="fas fa-comments fa-3x"></i>
                 </div>
                     <div class="col-8">
-                    <h4 class="card-title">200 avis      </h4>
+                    <h4 class="card-title">{{stats.comments}} avis      </h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
+    <hr>
+        <div class="row">
+            <div class="col-6">
+                <div class="alert alert-success">
+                <h2 class="alert-heading my-3"><i class="fas fa-arrow-up"></i> Les annonces les plus populaires</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Annonce</th>
+                            <th>Propriétaire</th>
+                            <th>Moyenne</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                        {% for ad in bestAds %}
+                <tr>
+                    <td>{{ad.title}}</td>
+                    <td>
+                        <img src="{{ad.picture}}" alt="" class="avatar avatar-dashboard">{{ad.firstname}} {{ad.lastname}}
+                    </td>
+                    <td class="text-center">
+                    <span class="badge badge-dark">
+                    {{ad.note}}
+                    </span>
+                    </td>
+                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>    
+             </div>
+         </div>
+    </div>
 </div>
 
 {% endblock %}
