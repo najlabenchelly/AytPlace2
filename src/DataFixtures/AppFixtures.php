@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
         $adminUser= new User();
         $adminUser->setFirstname('Najla')
                   ->setLastname('Chelly')
-                  ->setEmail('Chellly.n@gmail.com')
+                  ->setEmail('Chelly.n@gmail.com')
                   ->setHash($this->encoder->encodePassword($adminUser, 'root'))
                   ->setPicture('https://avatar.io/instagram/_newnew_n')
                   ->setIntroduction($faker->sentence())
@@ -78,7 +78,7 @@ class AppFixtures extends Fixture
         //gestion annonce
 
 
-        for( $i= 1; $i <=30; $i++){
+        for( $i= 1; $i <=10; $i++){
         $ad = new Ad();
 
         $title=$faker->sentence(1);

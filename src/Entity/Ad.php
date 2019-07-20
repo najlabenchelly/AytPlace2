@@ -30,8 +30,8 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=5 ,max=255, minMessage=" Le titre  doit faire plus de 10 caractères!",
-     * maxMessage="Le titree ne peut pas faire plus de 255 caratères")
+     * @Assert\Length(min=5 ,max=255, minMessage=" Le titre  doit faire plus de 5 caractères!",
+     * maxMessage="Le titre ne peut pas faire plus de 255 caratères")
      */
     private $title;
 

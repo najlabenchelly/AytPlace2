@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{booking.id}}</td>
                     <td>{{booking.createdAt|date('d/m/Y H:i')}}</td>
-                    <td>{{booking.booker.firstName}} {{booking.booker.firstName}}</td>
+                    <td>{{booking.booker.firstName}} {{booking.booker.lastName}}</td>
                     <td>{{booking.ad.title}}</td>
                     <td>{{booking.duration}}</td>
                  <td>{{booking.amount | number_format(2, ",", " ")}} &euro;</td>
