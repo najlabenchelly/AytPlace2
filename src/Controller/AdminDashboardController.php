@@ -34,6 +34,21 @@ class AdminDashboardController extends AbstractController
 
             dump($bestAds);
 
+        $worstAds = $manager->createQuery(
+            
+            'SELECT AVG(c.rating)as note, a.title, a.id, u.firstname, u.lastname, u.picture 
+            FROM App\Entity\Comment c
+            JOIN c.ad a
+            JOIN a.author u
+            GROUP BY a 
+            ORDER BY note ASC'
+            )
+            ->setMaxResults(5)
+            ->getResult();
+
+            dump($worstAds);
+
+
 
 
  
@@ -46,7 +61,8 @@ class AdminDashboardController extends AbstractController
             'comments'=> $comments
             
             ],
-            'bestAds'=> $bestAds
+            'bestAds'=> $bestAds,
+            'worstAds'=>$worstAds,
         ]);
     }
 }
