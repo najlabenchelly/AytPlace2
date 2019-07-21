@@ -26,7 +26,7 @@ class StatService {
 
     }
     public function getBookingCount() {
-        return $this->manager->createQuery('SELECT COUNT(b) FROM App\Entity\Booking b')->getSingleScalarResult();   
+        return $this->manager->createQuery('SELECT COUNT(b) FROM App\Entity\Booking b')->getSingleScalarResult();
     }
 
     public function getCommentCount(){
@@ -36,7 +36,7 @@ class StatService {
 
     public function getAdStat($order){
          return $this->manager->createQuery(
-            
+
             'SELECT AVG(c.rating)as note, a.title, a.id, u.firstname, u.lastname, u.picture 
             FROM App\Entity\Comment c
             JOIN c.ad a
@@ -46,9 +46,6 @@ class StatService {
             )
             ->setMaxResults(5)
             ->getResult();
-
-
-
     }
-    
+
 }
