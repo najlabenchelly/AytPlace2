@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(
  * fields ={"title"},
- * message= "Une autre annonce posséde déja ce titree, merci de le modifie
+ * message= "Une autre annonce posséde déja ce titre, merci de le modifier")
  * 
  */
 class Ad
