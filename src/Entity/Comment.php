@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -44,15 +45,9 @@ class Comment
      */
     private $author;
 
-    /**
-     * Date de creation commentaire affectation
-     * @ORM\PrePersist
-     * @return void
-     */
-    public function prePersist() {
-        if(empty($this->createdAt)) {
-            $this->createdAt = new \DateTime();
-        }
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
