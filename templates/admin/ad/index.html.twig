@@ -17,7 +17,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
- 
+
     <tbody>
             {% for ad in ads %}
             <tr>
@@ -28,7 +28,7 @@
                     <span class="badge badge-primary rounded">{{ad.bookings | length}}</span>
                 </td>
                 <td class="text-center">
-                    <span class="badge badge-primary rounded">{{ad.avgRatings | number_format(1, ',', ' ')}}</span>
+                    <span class="badge badge-primary rounded">{{ad|avgRatings}} </span>
                 </td>
                 <td>
                     <a href="{{ path('admin_ads_edit',{'id':ad.id}) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>

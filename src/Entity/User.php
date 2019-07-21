@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @Orm\HasLifecycleCallbacks()
  * @UniqueEntity(
  * fields={"email"},
- * message="Cee eemail est déjà existant , merci de bien vouloir le modifier" 
+ * message="Cee eemail est déjà existant , merci de bien vouloir le modifier"
  * )
  */
 class User implements UserInterface
@@ -56,7 +56,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
-     
+
     /**
      * @Assert\EqualTo(propertyPath="hash", message="Vous n'avez pas correctement confirmé votre mot de passe !")
      */
@@ -98,23 +98,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author", orphanRemoval=true)
      */
     private $comments;
-
-    /**
-     * Peermet d'initialiser  le slug$
-     * 
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     * 
-     * @return void
-     */
-
-    public function initializeSlug() {
-
-        if(empty($this->slug)) {
-            $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->firstname .' '.$this->lastname);
-        }
-    }
 
     public function __construct()
     {
@@ -255,7 +238,7 @@ class User implements UserInterface
         return $this;
     }
     public function getRoles(){
-        
+
          $roles = $this->userRoles->map(function($role){
             return $role->getTitle();
         })->toArray();
@@ -266,16 +249,16 @@ class User implements UserInterface
     }
     public function getPassword(){
         return $this->hash;
-    
+
     }
     public function getSalt(){}
 
     public function getUsername(){
         return $this->email;
-    
-    } 
+
+    }
     public function eraseCredentials(){
-        
+
     }
 
     /**
@@ -366,5 +349,5 @@ class User implements UserInterface
         }
 
         return $this;
-    }   
+    }
 }
