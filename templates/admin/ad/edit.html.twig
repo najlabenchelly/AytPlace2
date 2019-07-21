@@ -7,7 +7,7 @@
 {% block body %}
 
 <div class="container">
-    <h1 class="my-5">Modification de l'annonce {{ad.title}}</h1>
+    <h1 class="my-5">Modificationgi de l'annonce {{ad.title}}</h1>
 
     {{ form_start(form) }}
 
@@ -15,7 +15,7 @@
         <div class="col">
             <div class="card bg-light">
                 <div class="card-header">
-                    <h4 class="card-title">Corriger l'annonce ?</h4>
+                    <h4 class="card-title">Corriger l'annonce </h4>
                 </div>
                 <div class="card-body">
                     {{ form_widget(form) }}
@@ -38,7 +38,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Utilisateeur</th>
+                                <th>Utilisateur</th>
                                 <th>Date de réservation</th>
                                 <th></th>
                             </tr>
@@ -48,9 +48,10 @@
                             <tr>
                                 <td>{{booking.id}}</td>
                                 <td>{{booking.booker.firstName}} {{booking.booker.lastName}}</td>
+                                <td><img src="{{booking.booker.picture}}" alt="" class="avatar avatar-medium"> {{booking.booker.firstName}} {{booking.booker.lastName}}</td>
                                 <td>{{booking.createdAt | date('d/m/Y H:i')}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">
+                                    <a  href="{{ path('admin_booking_edit',{'id':booking.id}) }}" class="btn btn-primary">
                                         <i class="fas fa-pen"></i>
                                     </a>
                                 </td>
@@ -80,7 +81,7 @@
                                 <td>{{comment.rating}}</td>
                                 <td>{{comment.content}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="{{path('admin_comment_edit',{'id':comment.id})}}" class="btn btn-primary">
                                         <i class="fas fa-pen"></i>
                                     </a>
                                 </td>
