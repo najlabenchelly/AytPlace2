@@ -18,6 +18,7 @@ class AdRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ad::class);
     }
+
      public function findBestAd($maxres){
         return $this->createQueryBuilder('a')
             ->select('a as annonce,AVG(c.rating) as avgRatings')
@@ -29,6 +30,7 @@ class AdRepository extends ServiceEntityRepository
             ->getResult();
 
     }
+
 
 
     public function avgRatings(Ad $ad) {
