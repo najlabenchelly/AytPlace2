@@ -20,7 +20,7 @@ class BookingRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Booking[] Returns an array of Booking objects
+    //  * @return BookingListener[] Returns an array of BookingListener objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class BookingRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Booking
+    public function findOneBySomeField($value): ?BookingListener
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.exampleField = :val')

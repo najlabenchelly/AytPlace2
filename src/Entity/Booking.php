@@ -62,36 +62,17 @@ class Booking
      * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
-  
 
-    /**
-     * Callback appelé à chaque fois qu'on créé une réservation
-     *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     * 
-     * @return void
-     */
-    public function prePersist() {
-        if(empty($this->createdAt)) {
-            $this->createdAt = new \DateTime();
-        }
-
-        if(empty($this->amount)) {
-            // prix de l'annonce * nombre de jour
-            $this->amount = $this->ad->getPrice() * $this->getDuration();
-        }
-    }
     /**
      * Permet de savoir si les dates réservées sont disponibles ou non
      *
-     * @return boolean 
+     * @return boolean
      */
-    
+
     public function isBookableDates() {
         // connaitreee les dates qui sont impossible de reeservation pour l'annonce
         $notAvailableDays = $this->ad->getNotAvailableDays();
-        
+
         // Comparaison dees dates choisies avec les dates impossibles
         $bookingDays = $this->getDays();
 
@@ -114,7 +95,7 @@ class Booking
      *
      * @return array Un tableau d'objets DateTime représentant les jours de la réservation
      */
-    
+
     public function getDays() {
         //
         $resultat = range(
@@ -122,7 +103,7 @@ class Booking
             $this->endDate->getTimestamp(),
             24 * 60 * 60
         );
-        
+
         $days =  array_map(function($dayTimestamp) {
             return new \DateTime(date('Y-m-d', $dayTimestamp));
         }, $resultat);
