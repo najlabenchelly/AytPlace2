@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(
  * fields ={"title"},
- * message= "Une autre annonce posséde déja ce titree, merci de le modifie
+ * message= "Une autre annonce posséde déja ce titre, merci de le modifier")
  * 
  */
 class Ad
@@ -48,13 +48,13 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10,minMessage="Votre description doit fairee plus de 10 caractères")
+     * @Assert\Length(min=10,minMessage="Votre description doit faire plus de 10 caractères")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=1,minMessage="Votre description doit faire plus de 20 caractères")
+     * @Assert\Length(min=5,minMessage="Votre description doit faire plus de 20 caractères")
      */
     private $content;
 
@@ -133,7 +133,7 @@ class Ad
     /**
      *  obteenir un tableau des jours qui ne sont pas disponible pour cette annonce
      *
-     * @return array Un tableau d'objets DateTime représentant les jours d'occupation
+     * @return array Un tableau d'objets DateTime représentant les jours d'occupations
      */
 
     public function getNotAvailableDays() {
@@ -141,18 +141,18 @@ class Ad
 
         foreach($this->bookings as $booking) {
             // Calculer les jours qui se trouvent entre la date d'arrivée et de départ
-            //range permet de generee le timeestamp*
+            //range permet de genere le timeestamp*
             //24H/journée 60min/1H 60 scd journée
             $resultat = range(
                 $booking->getStartDate()->getTimestamp(),
                 $booking->getEndDate()->getTimestamp(),
                 24 * 60 * 60
             );
-            //array permet de transformer rangee en un tableau
+            //array permet de transformer range en un tableau
             $days = array_map(function($dayTimestamp){
                 return new \DateTime(date('Y-m-d', $dayTimestamp));
             }, $resultat);
-            //res=toute les journee entre datee depart et arrivéee d'une reservation
+            //res=toutes les journées entre date départ et arrivée d'une réservation
             //journée occupée :fusion des 2 tableaux
             $notAvailableDays = array_merge($notAvailableDays, $days);
         }
