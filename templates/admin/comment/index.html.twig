@@ -12,6 +12,7 @@
                     <th>Id</th>
                     <th>Date</th>
                     <th>Auteur</th>
+                    <th>Photo</th>
                     <th>Commentaire</th>
                     <th>Note</th>
                     <th>Annonce</th>
@@ -24,6 +25,9 @@
                     <td>{{comment.id}}</td>
                     <td>{{comment.createdAt|date('d/m/Y H:i')}}</td>
                     <td> {{comment.author.firstName}} {{comment.author.lastName}}</td>
+                     <td>
+                <img src="{{comment.author.picture}}" alt="" class="avatar avatar-dashboard">
+                    </td>
                     <td>{{comment.content}}</td>
                     <td>{{comment.rating}}</td>
                     <td>{{comment.ad.title}}</td>
