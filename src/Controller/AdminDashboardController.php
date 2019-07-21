@@ -23,9 +23,9 @@ class AdminDashboardController extends AbstractController
        $stat =$statService->getStat();
         
         $bestAd = $statService->getAdStat('DESC');
-            dump($bestAd);
+          
         $worstAd = $statService->getAdStat('ASC');
-            dump($worstAd);
+          
 
 
  
