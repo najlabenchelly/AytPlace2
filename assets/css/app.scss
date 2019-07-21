@@ -3,7 +3,13 @@ div.container-fluid {
   margin-top: 20px;
 }
 
-div.ad.title {
+p {
+
+  margin-top: 20px !important
+}
+
+
+div.cover {
   padding: 2em;
   background-size: cover;
   background-position: center center;
@@ -11,17 +17,24 @@ div.ad.title {
 
 div.ad-title h1,
 div.ad-title p {
-  color: white;
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0, 5);
+  color: white !important;
   padding-top: 10px;
 }
 
 div.carousel-caption {
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  color: 3px 3px 3px white;
 }
 
 div.social-media__container {
   margin-top: 5px;
+}
+
+footer {
+  margin-top: 300px !important;
+}
+
+.footer {
+  color: lightgrey !important;
 }
 
 .pink__container {
@@ -35,6 +48,8 @@ div.social-media__container {
   height: 450px;
   /* padding: 0px; */
 }
+
+
 
 img {
   margin-bottom: 2px;
@@ -79,13 +94,14 @@ button {
 }
 
 .place-item__text {
-  width: 70%;
+
   font-size: 22px;
   margin-top: 110px;
+  text-align: center;
 }
 
 .logo.header {
-  font: white;
+  font: white !important;
 }
 
 .nav-link:hover {
@@ -107,11 +123,6 @@ h1 {
 
 .my-5 {
   border: 11px solid rgba(1, 1, 1, 0.1);
-  /* margin-bottom: 12rem !important; */
-  /* margin-left: 18%; */
-  /* margin-right: 10%; */
-  /* margin-top: 14px; */
-  /* margin-top: 9rem !important; */
   text-align: center;
   padding-bottom: 12px;
   padding-top: 12px;
@@ -125,12 +136,15 @@ h1 {
 
 div.ad-title h1,
 div.ad-title p {
-  color: black;
+  color: white;
   text-shadow: 3px, 3px, 3px rgba(0, 0, 0, 0.5);
 }
 
 .bg-light {
-  border: 25px solid rgba(0, 0, 0, 0.1);
+
+  border: 25px solid rgba(0, 0, 0, 0.1) !important;
+  margin-top: 20px !important;
+
 }
 
 .btn {
@@ -145,6 +159,8 @@ div.ad-title p {
   /* margin-top: 0px; */
   padding-top: 10px;
 }
+
+P.h2 {}
 
 @media (min-width: 768px) {
   .col-md-6 {
@@ -163,38 +179,75 @@ div.ad-title p {
   text-align: center;
   padding-bottom: 12px;
   padding-top: 12px;
+
+  &.tadmin {
+    margin-top: 20px;
+  }
+
+  &.footer {
+    margin-top: 100px !important
+  }
 }
 
-h2 {
-  color: lightgrey;
-}
 
 .avatar {
   max-width: 128px;
   max-height: 128px;
   border-radius: 50%;
+
+  &.avatar-medium {
+    max-width: 64px;
+    max-height: 64px;
+    border: solid 4px lightgray;
+    margin-bottom: 10px;
+  }
+
+  &.avatar-medium {
+    max-width: 64px;
+    max-height: 64px;
+    border: solid 4px lightgray;
+  }
+
+  &.avatar-mini {
+    max-width: 24px;
+    max-height: 24px;
+
+  }
+
+  &.avatar-dashboard {
+    max-width: 45px;
+    max-height: 45px;
+    margin-right: 5px;
+    border: solid 4px lightgray;
+
+  }
 }
 
-.avatar-medium {
-  max-width: 64px;
-  max-height: 64px;
-  border: solid 4px lightgray;
+.footer_admin {
+  margin-top: 200px;
 }
 
-.avatar-mini {
-  max-width: 24px;
-  max-height: 24px;
+
+body {
+  color: black;
+}
+
+i {
+  &.white_icone {
+    color: white;
+  }
+}
+
+a {
+  &h4 {
+    color: white
+  }
 
 }
 
-.avatar-dashboard {
-  max-width: 45px;
-  max-height: 45px;
-  margin-right: 5px;
-  border: solid 4px lightgray;
-
+.td {
+  color: black;
 }
-
 
 .carousel-inner {
   margin-top: 50px;
@@ -202,5 +255,35 @@ h2 {
 
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
-  color: firebrick !important;
+  color: red !important;
+}
+
+p {
+  color: black;
+
+
+  &.title {
+    color: white;
+
+  }
+
+  &.l-G {
+    color: lightgray;
+  }
+}
+
+h1 {
+  &.white {
+    color: white;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: black !important;
+  }
+}
+
+strong {
+  &.white {
+    color: white;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black !important;
+  }
 }

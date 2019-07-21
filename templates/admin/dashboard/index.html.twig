@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                        <i class="fas fa-users fa-3x"></i>
+                         <i class="fas fa-users fa-3x"></i>
                         </div>
                     <div class="col-8">
                         <h4 class="card-title">{{stats.users}} utilisateurs </h4>
@@ -27,7 +27,7 @@
             <div class="card-body">
                  <div class="row">
                         <div class="col-4">
-                        <i class="fas fa-hotel fa-3x"></i>
+                       <a  href="{{path("admin_ads_index")}}"> <i class="fas fa-hotel fa-3x white_icone"></i></a>
                         
                         </div>
                         <div class="col-8">
@@ -44,7 +44,7 @@
             <div class="card-body">
                  <div class="row">
                 <div class="col-4">
-                <i class="fas fa-folder fa-3x"></i>
+               <a  href="{{path("admin_booking_index")}}">  <i class="fas fa-folder fa-3x white_icone"></i></a>
                 </div>
                     <div class="col-8">
                     <h4 class="card-title">{{ stats.bookings }} réservations </h4>
@@ -59,10 +59,10 @@
           <div class="card-body">
                 <div class="row">
                      <div class="col-4">
-                        <i class="fas fa-comments fa-3x"></i>
+                      <a  href="{{path("admin_comment_index")}}"> <i class="fas fa-comments fa-3x white_icone"></i> </a>
                 </div>
                     <div class="col-8">
-                    <h4 class="card-title">{{stats.comments}} avis      </h4>
+                     <h4 class="card-title dashboard_card">{{stats.comments}} avis    </h4>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                                 </td>
                                     <td class="text-center">
                                         <span class="badge badge-dark">
-                                        {{ad.note}}
+                                        {{ad.note | number_format(1, ",", " ")}}
                                     </span>
                                     </td>
                     </tr>
@@ -120,7 +120,7 @@
                                 </td>
                                     <td class="text-center">
                                         <span class="badge badge-dark">
-                                        {{ad.note}}
+                                        {{ad.note | number_format(1, ",", " ")}}
                                     </span>
                                     </td>
                     </tr>

@@ -16,8 +16,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(
  * fields ={"title"},
- * message= "Une autre annonce possède déja ce titree, merci de le modifier")
- *
+ * message= "Une autre annonce posséde déja ce titre, merci de le modifier")
+ * 
  */
 class Ad
 {
@@ -121,6 +121,7 @@ class Ad
      * @param User $author
      * @return Comment|null
      */
+
     public function getCommentFromAuthor(User $author){
         foreach($this->comments as $comment) {
             if($comment->getAuthor() === $author) return $comment;
@@ -270,7 +271,6 @@ class Ad
     {
         if ($this->images->contains($image)) {
             $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
             if ($image->getAd() === $this) {
                 $image->setAd(null);
             }
@@ -313,7 +313,7 @@ class Ad
     {
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
-            // set the owning side to null (unless already changed)
+        
             if ($booking->getAd() === $this) {
                 $booking->setAd(null);
             }
@@ -344,7 +344,6 @@ class Ad
     {
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
-            // set the owning side to null (unless already changed)
             if ($comment->getAd() === $this) {
                 $comment->setAd(null);
             }
