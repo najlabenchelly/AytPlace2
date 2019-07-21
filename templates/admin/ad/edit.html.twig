@@ -50,11 +50,11 @@
                                 <td>{{booking.booker.firstName}} {{booking.booker.lastName}}</td>
                                 <td><img src="{{booking.booker.picture}}" alt="" class="avatar avatar-medium"> {{booking.booker.firstName}} {{booking.booker.lastName}}</td>
                                 <td>{{booking.createdAt | date('d/m/Y H:i')}}</td>
-                                <td>
-                                    <a  href="{{ path('admin_booking_edit',{'id':booking.id}) }}" class="btn btn-primary">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                </td>
+                              <td>
+                    <a href="{{ path('admin_booking_edit',{'id':booking.id}) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('admin_booking_delete',{'id': booking.id}) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+
+                             </td>
                             </tr>
                             {% endfor %}
                

@@ -7,7 +7,7 @@ p {
   margin-bottom: 30px !important
 }
 
-div.ad.title {
+div.cover {
   padding: 2em;
   background-size: cover;
   background-position: center center;
@@ -226,12 +226,27 @@ P.h2 {}
   }
 }
 
+.footer_admin {
+  margin-top: 200px;
+}
 
 
 body {
   color: black;
 }
 
+i {
+  &.white_icone {
+    color: white;
+  }
+}
+
+a {
+  &h4 {
+    color: white
+  }
+
+}
 
 .td {
   color: black;
