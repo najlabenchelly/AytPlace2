@@ -8,10 +8,10 @@
 
 <div class="cover" style="background-image: url({{ ad.coverImage }})">
   <div class="container">
-   <h1>{{ ad.title }}</h1>
-     <p>{{ad.introduction}}</p>
+   <h1 class="white">{{ ad.title }}</h1>
+     <p class="title">{{ad.introduction}}</p>
 	 <p class ="h2">
-       <strong>{{ ad.rooms }} salles</strong> pour <strong> {{ ad.price }}&euro; </strong> par jour
+       <strong class="white">{{ ad.rooms }} salles pour {{ ad.price }}&euro; par jour </strong> 
 	 </p>
 
 				<a href="{{path('booking_create',{'slug':ad.slug})}}" class="btn btn-primary"> Réserver </a>

@@ -4,8 +4,10 @@ div.container-fluid {
 }
 
 p {
-  margin-bottom: 30px !important
+
+  margin-top: 20px !important
 }
+
 
 div.cover {
   padding: 2em;
@@ -141,10 +143,8 @@ div.ad-title p {
 .bg-light {
 
   border: 25px solid rgba(0, 0, 0, 0.1) !important;
+  margin-top: 20px !important;
 
-  &.loginadmin {
-    margin-top: 300px;
-  }
 }
 
 .btn {
@@ -255,5 +255,35 @@ a {
 
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
-  color: firebrick !important;
+  color: red !important;
+}
+
+p {
+  color: black;
+
+
+  &.title {
+    color: white;
+
+  }
+
+  &.l-G {
+    color: lightgray;
+  }
+}
+
+h1 {
+  &.white {
+    color: white;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: black !important;
+  }
+}
+
+strong {
+  &.white {
+    color: white;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black !important;
+  }
 }
