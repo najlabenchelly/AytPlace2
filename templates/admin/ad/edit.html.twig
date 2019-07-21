@@ -39,6 +39,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Utilisateur</th>
+                                <th>Photo</th>
                                 <th>Date de réservation</th>
                                 <th></th>
                             </tr>
@@ -48,7 +49,7 @@
                             <tr>
                                 <td>{{booking.id}}</td>
                                 <td>{{booking.booker.firstName}} {{booking.booker.lastName}}</td>
-                                <td><img src="{{booking.booker.picture}}" alt="" class="avatar avatar-medium"> {{booking.booker.firstName}} {{booking.booker.lastName}}</td>
+                                <td><img src="{{booking.booker.picture}}" alt="" class="avatar avatar-medium"></td>
                                 <td>{{booking.createdAt | date('d/m/Y H:i')}}</td>
                               <td>
                     <a href="{{ path('admin_booking_edit',{'id':booking.id}) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
@@ -67,7 +68,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Utilisateur</th>
+                                <th>Utilisateur</th>>
                                 <th>Note</th>
                                 <th>Commentaire</th>
                                 <th></th>
