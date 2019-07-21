@@ -17,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(
  * fields ={"title"},
  * message= "Une autre annonce possède déja ce titree, merci de le modifier")
- * 
+ *
  */
 class Ad
 {
@@ -37,7 +37,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     *
      */
     private $slug;
 
@@ -100,10 +100,10 @@ class Ad
 
     /**
      * Peermet d'initialiser  le slug$
-     * 
+     *
      * @ORM\PrePersist
      * @ORM\PreUpdate
-     * 
+     *
      * @return void
      */
 
@@ -114,7 +114,6 @@ class Ad
             $this->slug = $slugify->slugify($this->title);
         }
     }
-
 
      /**
      * récupére le commentaire d'un auteur par rapport à une annonce
@@ -130,25 +129,6 @@ class Ad
         return null;
     }
 
-
-    /**
-     * moyenne globale des notes par annonce
-     *
-     * @return float
-     */
-
-    public function getAvgRatings() {
-        // Calculer la somme des notations
-        $sum = array_reduce($this->comments->toArray(), function($total, $comment) {
-            return $total + $comment->getRating();
-        }, 0);
-
-        // Faire la division pour avoir la moyenne
-        if(count($this->comments) > 0) return $sum / count($this->comments);
-
-        return 0;
-    }
-
     /**
      *  obteenir un tableau des jours qui ne sont pas disponible pour cette annonce
      *
@@ -158,13 +138,13 @@ class Ad
     public function getNotAvailableDays() {
         $notAvailableDays = [];
 
-            foreach($this->bookings as $booking) {
+        foreach($this->bookings as $booking) {
             // Calculer les jours qui se trouvent entre la date d'arrivée et de départ
-        //range permet de generee le timeestamp*
-        //24H/journée 60min/1H 60 scd journée
+            //range permet de generee le timeestamp*
+            //24H/journée 60min/1H 60 scd journée
             $resultat = range(
-                $booking->getStartDate()->getTimestamp(), 
-                $booking->getEndDate()->getTimestamp(), 
+                $booking->getStartDate()->getTimestamp(),
+                $booking->getEndDate()->getTimestamp(),
                 24 * 60 * 60
             );
             //array permet de transformer rangee en un tableau
@@ -172,12 +152,13 @@ class Ad
                 return new \DateTime(date('Y-m-d', $dayTimestamp));
             }, $resultat);
             //res=toute les journee entre datee depart et arrivéee d'une reservation
-//journée occupée :fusion des 2 tableaux 
+            //journée occupée :fusion des 2 tableaux
             $notAvailableDays = array_merge($notAvailableDays, $days);
         }
 
         return $notAvailableDays;
     }
+
     public function getId(): ?int
     {
         return $this->id;
