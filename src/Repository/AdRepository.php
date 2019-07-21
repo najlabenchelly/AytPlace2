@@ -20,18 +20,17 @@ class AdRepository extends ServiceEntityRepository
     }
 
 
-    public function findBestAd($maxRes){
+     public function findBestAd($maxres){
         return $this->createQueryBuilder('a')
             ->select('a as annonce,AVG(c.rating) as avgRatings')
             ->join('a.comments','c')
             ->groupBy('a')
             ->orderBy('avgRatings','DESC')
-            ->setMaxResults($maxRes)
+            ->setMaxResults($maxres)
             ->getQuery()
             ->getResult();
 
     }
-
     // /**
     //  * @return Ad[] Returns an array of Ad objects
     //  */
@@ -48,13 +47,14 @@ class AdRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
     public function avgRatings(Ad $ad) {
         // Calculer la somme des notations
         $comments = $ad->getComments()->toArray();
         $sum = array_reduce($comments, function($total, $comment) {
             return $total + $comment->getRating();
         }, 0);
-
 
         return  (count($comments) > 0) ? $sum / count($comments) :  0;
     }

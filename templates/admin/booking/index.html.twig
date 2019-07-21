@@ -11,7 +11,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Date</th>
-                    <th>Visiteur</th>
+                    <th>Personne</th>
+                    <th>Photo</th>
                     <th>Annonce</th>
                     <th>Durée</th>
                     <th>Montant</th>
@@ -25,6 +26,9 @@
                     <td>{{booking.id}}</td>
                     <td>{{booking.createdAt|date('d/m/Y H:i')}}</td>
                     <td>{{booking.booker.firstName}} {{booking.booker.lastName}}</td>
+                     <td>
+                <img src="{{booking.booker.picture}}" alt="" class="avatar avatar-dashboard">
+                    </td>
                     <td>{{booking.ad.title}}</td>
                     <td>{{booking.duration}}</td>
                  <td>{{booking.amount | number_format(2, ",", " ")}} &euro;</td>
