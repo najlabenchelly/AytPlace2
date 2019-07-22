@@ -8,6 +8,10 @@ p {
   margin-top: 20px !important
 }
 
+.min-width {
+  min-height: 1295px;
+}
+
 div.loginadmin {
   margin-top: 200px !important
 }
@@ -17,6 +21,12 @@ div.cover {
   background-size: cover;
   background-position: center center;
   margin-bottom: 105px;
+}
+
+.m-reserv {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 120px !important;
 }
 
 div.ad-title h1,
@@ -34,11 +44,19 @@ div.social-media__container {
 }
 
 footer {
-  margin-top: 300px !important;
+  margin-top: 500px !important;
 }
 
 .footer {
+
   color: lightgrey !important;
+
+}
+
+.btn {
+  font-size: .765625rem;
+  text-transform: uppercase;
+  margin-top: 10px;
 }
 
 .pink__container {
@@ -144,10 +162,29 @@ div.ad-title p {
   text-shadow: 3px, 3px, 3px rgba(0, 0, 0, 0.5);
 }
 
-.bg-light {
+.card {
 
+  .bg-light {
+    border: 25px solid rgba(0, 0, 0, 0.1) !important;
+    margin-top: 20px !important;
+    //min-height: 600px;
+
+
+  }
+}
+
+.minsize {
+  min-height: 615px !important;
+  max-height: 615px !important;
+
+
+}
+
+.bg-light {
   border: 25px solid rgba(0, 0, 0, 0.1) !important;
   margin-top: 20px !important;
+  //min-height: 600px;
+
 
 }
 
@@ -290,6 +327,46 @@ strong {
   &.white {
     color: white;
     -webkit-text-stroke: 2px;
-    -webkit-text-stroke-color: black !important;
+
+
   }
+}
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
 }

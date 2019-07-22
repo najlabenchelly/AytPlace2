@@ -6,18 +6,20 @@
 
 {% block body %}
 
-<div class="cover" style="background-image: url({{ ad.coverImage }})">
+<div class="cover middle" style="background-image: url({{ ad.coverImage }})">
   <div class="container">
    <h1 class="title">{{ ad.title }}</h1>
 	 <p class ="h2">
        <strong class="white">{{ ad.rooms }} pièces pour {{ ad.price }}&euro; par jour </strong> 
 	 </p>
-
+{% if app.user and app.user != ad.author %}
 				<a href="{{path('booking_create',{'slug':ad.slug})}}" class="btn btn-primary"> Réserver </a>
+		{% endif %}		
 		{% if app.user and app.user == ad.author %}
 				<a href="{{path('ads_edit',{'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
 				<a href="{{path('ads_delete',{'slug': ad.slug}) }}" class="btn btn-danger"
 		onclick="return confirm(`Etes-vous sur de vouloir supprimer l'annoncee {{ad.title}}?`)">Supprimer l'annonce</a>
+			<a href="{{path('booking_create',{'slug':ad.slug})}}" class="btn btn-primary"> Bloquer des dates </a>
 {% endif %}
   </div>
 </div>

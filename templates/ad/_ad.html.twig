@@ -1,9 +1,9 @@
  {% set url = path ('ads_show', {'slug': ad.slug }) %}
 
        <div class="col-md-4">
-            <div class="card bg-light mb-3">
+            <div class="minsize card bg-light mb-3">
                 <div class="card-header text-center">
-                     {{ ad.rooms }} chambres, <strong> {{ad.price}} &euro; /jour</strong> <br>
+                     {{ ad.rooms }} pièces, <strong> {{ad.price}} &euro; /jour</strong> <br>
                      {% if ad.comments|length > 0 %}
                 {% include 'shared/rating.html.twig' with {'rating': ad|avgRatings} %}
             {% else %}

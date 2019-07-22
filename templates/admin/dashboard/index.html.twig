@@ -87,7 +87,9 @@
                     <tr>
                         <td>{{ad.title}}</td>
                             <td>
+                            <a href="{{ path('admin_ads_edit',{'id':ad.id}) }}"</a>
                                 <img src="{{ad.picture}}" alt="" class="avatar avatar-dashboard">{{ad.firstname}} {{ad.lastname}}
+                                 
                                 </td>
                                     <td class="text-center">
                                         <span class="badge badge-dark">
@@ -116,6 +118,7 @@
                     <tr>
                         <td>{{ad.title}}</td>
                             <td>
+                            <a href="{{ path('admin_ads_edit',{'id':ad.id}) }}"</a>
                                 <img src="{{ad.picture}}" alt="" class="avatar avatar-dashboard">{{ad.firstname}} {{ad.lastname}}
                                 </td>
                                     <td class="text-center">
