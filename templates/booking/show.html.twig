@@ -35,11 +35,11 @@
                     
                     <h2 class="alert-heading">Votre hôte</h2>
                     <div class="row mb-3">
-                    <div class="col-3">
+                    <div class="col">
                     <img src="{{author.picture}}" class="avatar avatar-medium" alt="Avatar de {{ booking.ad.author.firstname}} {{ booking.ad.author.lastName}}">
                     </div>
                    
-                    <div class="col-9">
+                    <div class="col">
                             <h4>
                                 <a href="{{ path('user_show', {'slug': author.slug}) }}">{{ booking.ad.author.firstname}} {{ booking.ad.author.lastName}}</a>
                                 <span class="badge badge-primary">{{author.ads|length}} annonces</span>
@@ -65,10 +65,10 @@
             </div>
         </div>
     </div>
-</div>
+
     <div class="col-5">
   <div class="alert alert-light" id="comment">
-                    <h2 class="alert-heading">Votre avis compte !</h2>
+                    <h2 class="alert-heading">Laissez votre avis </h2>
                     {% if date() > date(booking.endDate) %}
                         {% set comment = booking.ad.commentFromAuthor(app.user) %}
                         {% if comment is not null %}
@@ -80,7 +80,7 @@
                         {% else %}
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
-                            <button type="submit" class="btn ">Confirmation</button>
+                            <button type="submit" class="btn btn-primary">Confirmation</button>
                             {{ form_end(form) }}
                         {% endif %}
 
@@ -90,6 +90,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 {% endblock %}

@@ -39,7 +39,7 @@ class AdminAdController extends AbstractController
            
             $this->addFlash(
                 'success',
-                "l'enregistrement {$ad->getTitle()} s'est bien effectué "
+                "L'enregistrement {$ad->getTitle()} s'est bien effectué "
             );
 
         }

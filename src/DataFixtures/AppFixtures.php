@@ -142,6 +142,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($ad);
         }
+        
 
         $manager->flush();
     }
