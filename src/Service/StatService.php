@@ -11,6 +11,7 @@ class StatService {
     public function __construct(ObjectManager $manager){
         $this->manager = $manager;
     }
+
     public function getStat(){
         $users =$this->getUserCount();
         $ads = $this->getAdCount();
